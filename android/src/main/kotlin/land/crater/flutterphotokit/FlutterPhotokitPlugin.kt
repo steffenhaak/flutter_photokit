@@ -1,6 +1,7 @@
 package land.crater.flutterphotokit
 
 import android.util.Log
+import android.os.Environment
 import java.io.File
 
 import io.flutter.plugin.common.MethodChannel
@@ -27,9 +28,9 @@ class FlutterPhotokitPlugin(): MethodCallHandler {
       if (!pictureDir?.mkdirs()) {
           Log.e("FLUTTERPHOTOKIT", "Directory not created")
       }
-      val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "spesh", fileName)
-      File(filePath).copyTo(target: file)
-      result.success(file.filePath)
+      val destFile = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "spesh", fileName)
+      srcFile.copyTo(target: destFile)
+      result.success(destFile.filePath)
     } else {
       result.notImplemented()
     }
