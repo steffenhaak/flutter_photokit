@@ -1,5 +1,7 @@
 package land.crater.flutterphotokit
 
+import android.util.Log
+
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
@@ -16,6 +18,11 @@ class FlutterPhotokitPlugin(): MethodCallHandler {
   }
 
   override fun onMethodCall(call: MethodCall, result: Result): Unit {
-    result.notImplemented()
+    if (call.method.equals("saveToCameraRoll")) {
+      Log.d("SAVE", call)
+      result.success("Android ${android.os.Build.VERSION.RELEASE}")
+    } else {
+      result.notImplemented()
+    }
   }
 }
