@@ -29,7 +29,7 @@ class FlutterPhotokitPlugin(): MethodCallHandler {
           Log.e("FLUTTERPHOTOKIT", "Directory not created")
       }
       val destFile: File = File(pictureDir, fileName)
-      srcFile.copyTo(overwrite: true, target: destFile)
+      srcFile.copyTo(destFile, true)
       result.success(destFile.getAbsolutePath())
     } else {
       result.notImplemented()
