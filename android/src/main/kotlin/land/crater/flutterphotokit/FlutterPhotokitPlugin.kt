@@ -28,9 +28,9 @@ class FlutterPhotokitPlugin(): MethodCallHandler {
       if (!pictureDir?.mkdirs()) {
           Log.e("FLUTTERPHOTOKIT", "Directory not created")
       }
-      val destFile = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() + "/spesh", fileName)
+      val destFile: File = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() + "/spesh", fileName)
       srcFile.copyTo(target: destFile)
-      result.success(destFile.filePath)
+      result.success(destFile.getAbsolutePath())
     } else {
       result.notImplemented()
     }
