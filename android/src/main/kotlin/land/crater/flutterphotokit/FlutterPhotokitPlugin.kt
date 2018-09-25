@@ -25,9 +25,6 @@ class FlutterPhotokitPlugin(): MethodCallHandler {
       val srcFile: File = File(filePath)
       val fileName: String = srcFile.nameWithoutExtension + "." + srcFile.extension
       val pictureDir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "spesh")
-      if (!pictureDir?.mkdirs()) {
-          Log.e("FLUTTERPHOTOKIT", "Directory not created")
-      }
       val destFile: File = File(pictureDir, fileName)
       srcFile.copyTo(destFile, true)
       result.success(destFile.getAbsolutePath())
