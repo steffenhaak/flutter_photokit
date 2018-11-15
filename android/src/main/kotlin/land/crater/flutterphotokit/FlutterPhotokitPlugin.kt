@@ -21,7 +21,7 @@ class FlutterPhotokitPlugin(): MethodCallHandler {
 
   override fun onMethodCall(call: MethodCall, result: Result): Unit {
     if (call.method.equals("saveToCameraRoll")) {
-      val filePath: String = call.argument("filePath")
+      val filePath: String = call.argument("filePath") ?: ""
       val srcFile: File = File(filePath)
       val fileName: String = srcFile.nameWithoutExtension + "." + srcFile.extension
       val pictureDir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "spesh")
