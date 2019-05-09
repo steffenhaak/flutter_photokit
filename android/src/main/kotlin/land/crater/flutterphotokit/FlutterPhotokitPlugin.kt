@@ -30,7 +30,7 @@ class FlutterPhotokitPlugin(): MethodCallHandler {
       val pictureDir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), albumName)
       val destFile: File = File(pictureDir, fileName)
       srcFile.copyTo(destFile, true)
-      result.success(destFile.getAbsolutePath())
+      result.success(true)
 
     }
     else {
