@@ -21,14 +21,19 @@ class FlutterPhotokitPlugin(): MethodCallHandler {
 
   override fun onMethodCall(call: MethodCall, result: Result): Unit {
     if (call.method.equals("saveToCameraRoll")) {
+      result.notImplemented()
+    } else if (call.method.equals("saveToAlbum"))  {
       val filePath: String = call.argument("filePath") ?: ""
+      val albumName: String = call.argument("albumName") ?: "albumName"
       val srcFile: File = File(filePath)
       val fileName: String = srcFile.nameWithoutExtension + "." + srcFile.extension
-      val pictureDir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "spesh")
+      val pictureDir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), albumName)
       val destFile: File = File(pictureDir, fileName)
       srcFile.copyTo(destFile, true)
       result.success(destFile.getAbsolutePath())
-    } else {
+
+    }
+    else {
       result.notImplemented()
     }
   }
