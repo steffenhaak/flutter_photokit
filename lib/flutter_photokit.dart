@@ -13,14 +13,19 @@ class FlutterPhotokit {
   /// [filePath] must contain either an image or video file.
   ///
   /// If an album named [albumName] doesn't exist, it will be created.
-  static Future<bool> saveToAlbum( {@required String filePath, @required String albumName}) async {
-    return await _channel.invokeMethod('saveToAlbum', <String, dynamic>{'filePath': filePath, 'albumName': albumName});
+  static Future<bool> saveToAlbum(
+      {required String filePath, required String albumName}) async {
+    return (await _channel.invokeMethod('saveToAlbum',
+            <String, dynamic>{'filePath': filePath, 'albumName': albumName})) ??
+        false;
   }
 
   /// Saves the file at [filePath] to the device's camera roll.
   ///
   /// [filePath] must contain either an image or video file.
-  static Future<bool> saveToCameraRoll({@required String filePath}) async {
-    return await _channel.invokeMethod('saveToCameraRoll', <String, dynamic>{ 'filePath': filePath});
+  static Future<bool> saveToCameraRoll({required String filePath}) async {
+    return (await _channel.invokeMethod(
+            'saveToCameraRoll', <String, dynamic>{'filePath': filePath})) ??
+        false;
   }
 }
